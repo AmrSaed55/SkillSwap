@@ -5,6 +5,8 @@ Each user can teach a skill they already know in exchange for learning a differe
 
 Built with **Next.js** and **Tailwind CSS**, SkillSwap follows a **mobile-first** approach and is fully responsive across all screen sizes.
 
+---
+
 ## 🚀 Live Demo
 
 https://skill-swap-eight-sand.vercel.app
