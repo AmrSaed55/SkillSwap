@@ -80,7 +80,7 @@ export default function Navbar() {
                 <li className="border-t border-gray-300 mt-2" />
                 <li className="flex items-center gap-3 cursor-pointer hover:bg-indigo-200 px-1.5 my-2 rounded-md">
                   <Image
-                    src={'/Profile.png'}
+                    src={'/profile.png'}
                     alt="user pic"
                     width={30}
                     height={30}
@@ -139,7 +139,7 @@ export default function Navbar() {
             </li>
             <li className="rounded-full cursor-pointer border-2 border-solid border-indigo-300 hover:border-indigo-400 transition-colors">
               <Image
-                src={'/Profile.png'}
+                src={'/profile.png'}
                 alt="user pic"
                 width={35}
                 height={40}

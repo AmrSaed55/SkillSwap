@@ -32,7 +32,10 @@ export default function Skills() {
         {/* end sidebar */}
 
         {/* start User Skills section */}
-        <section id="userSkills" className=" col-start-1 col-span-12 lg:col-span-7 mt-6 lg:mt-15 px-6">
+        <section
+          id="userSkills"
+          className=" col-start-1 col-span-12 lg:col-span-7 mt-6 lg:mt-15 px-6"
+        >
           <div className="container m-auto">
             <div className=" flex flex-col flex-wrap md:flex-nowrap left-box gap-8">
               <div className="flex flex-col items-start justify-center basis-full">
@@ -126,7 +129,7 @@ export default function Skills() {
                 />
                 {/* Card */}
                 <CommentsCard
-                  img={'/learner2.png'}
+                  img={'/Learner2.png'}
                   name={'Marina Lopez'}
                   rating={4}
                   title={'Product Lead'}

@@ -153,7 +153,7 @@ export default function Skills() {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 mt-10">
             {/* Matches Card */}
             <MatchesCard
-              img="/learner1.png"
+              img="/Learner1.png"
               name="Marcus Chen"
               rating={0}
               numOfSwaps={0}
@@ -164,7 +164,7 @@ export default function Skills() {
             />
             {/* Matches Card */}
             <MatchesCard
-              img="/learner2.png"
+              img="/Learner2.png"
               name="Sarah Jenkins"
               rating={4.8}
               numOfSwaps={18}
@@ -175,7 +175,7 @@ export default function Skills() {
             />
             {/* Matches Card */}
             <MatchesCard
-              img="/learner3.png"
+              img="/Learner3.png"
               name="David Thorne"
               rating={5.0}
               numOfSwaps={42}
@@ -186,7 +186,7 @@ export default function Skills() {
             />
             {/* Matches Card */}
             <MatchesCard
-              img="/learner2.png"
+              img="/Learner2.png"
               name="Sarah Jenkins"
               rating={4.8}
               numOfSwaps={18}
@@ -197,7 +197,7 @@ export default function Skills() {
             />
             {/* Matches Card */}
             <MatchesCard
-              img="/learner3.png"
+              img="/Learner3.png"
               name="David Thorne"
               rating={5.0}
               numOfSwaps={42}

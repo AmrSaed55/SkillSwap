@@ -29,7 +29,7 @@ bio
                 <div className="flex items-center gap-4">
                   <div>
                     <Image
-                      src={img || '/learner1.png'}
+                      src={img || '/Learner1.png'}
                       alt="skill1"
                       width={60}
                       height={60}
