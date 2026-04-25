@@ -7,6 +7,12 @@ Built with **Next.js** and **Tailwind CSS**, SkillSwap follows a **mobile-first*
 
 ---
 
+## 🚀 Live Demo
+
+https://skill-swap-eight-sand.vercel.app
+
+---
+
 ## ✨ Project Overview
 
 SkillSwap was designed to create a simple and modern environment where people can connect, share knowledge, and grow together through skill exchange.
