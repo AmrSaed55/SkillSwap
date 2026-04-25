@@ -1,4 +1,5 @@
-@import "tailwindcss";
+/* this block of code is from the file app/globals.css, which contains global CSS styles for the application. The code includes commented-out sections that define CSS variables for background and foreground colors, as well as font settings. There is also a media query for dark mode that changes the background and foreground colors accordingly. The body element has a font-family set to Arial, Helvetica, sans-serif.----------------------------------------------------------- */
+/* @import "tailwindcss";
 
 :root {
   --background: #ffffff;
@@ -17,10 +18,140 @@
     --background: #0a0a0a;
     --foreground: #ededed;
   }
-}
+} */
 
-body {
+/* body {
   background: var(--background);
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
+} */
+
+/*----------------------------------------------------------- */
+@import 'tailwindcss';
+:root {
+  --primary: #645dfc;
+  --secondary: #10b981;
+  --tertiary: #f59e0b;
+  --neutral: #7b719d;
+  --text-primary: #32294f;
+  --paragraph-color: #625882;
+  --light-purple: #e8deff;
+  --lim-color: #6ffbbe;
+  --section-purple: #e2dfff9d;
+  --body-bg-color: #faf4ff;
+  --green-text: #006947;
 }
+.primary-color {
+  color: var(--primary);
+}
+.secondary-color {
+  color: var(--secondary);
+}
+.tertiary-color {
+  color: var(--tertiary);
+}
+.neutral-color {
+  color: var(--neutral);
+}
+.primary-text {
+  color: var(--text-primary);
+}
+.paragraph-color {
+  color: var(--paragraph-color);
+}
+.green-text {
+  color: var(--green-text);
+}
+.light-purple-color {
+  color: var(--light-purple);
+}
+.purple-bg {
+  background: var(--light-purple);
+}
+.lim-bg {
+  background: var(--lim-color);
+}
+.section-purple-bg {
+  background-color: var(--section-purple);
+}
+.bg-primary-color {
+  background: var(--body-bg-color);
+}
+.gradient-color {
+  background: linear-gradient(to right, #4f46e5, #9795ff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.bg-gradient-color {
+  background: linear-gradient(to right, #4f46e5, #9795ff);
+  
+}
+* {
+  box-sizing: border-box;
+}
+/* h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+span,
+li {
+  color: var(--text-primary);
+} */
+body {
+  /* font-family: Arial, Helvetica, sans-serif; */
+  background-color: #faf4ff;
+}
+/* start Navbar Styles */
+nav .mid-list ul li {
+  color: var(--text-primary);
+}
+nav .mid-list ul li::after {
+  content: '';
+  display: block;
+  width: 0;
+  height: 2px;
+  background: var(--primary);
+  transition: width 0.3s;
+}
+nav .mid-list ul li:hover::after {
+  width: 100%;
+}
+
+nav .mid-list ul li.active {
+  color: var(--primary);
+  font-weight: bold;
+  transition: color 0.3s;
+  scale: 1.05;
+}
+nav .mid-list ul li.active::after {
+  content: '';
+  display: block;
+  width: 100%;
+  height: 2px;
+  background: var(--primary);
+  transition: width 0.3s;
+}
+nav .mid-list ul li.active:hover:after {
+  width: 40%;
+}
+/* End Navbar Styles */
+
+/* Start landing */
+.landing-lable {
+  background-color: #6ffbbe;
+  padding: 4px 12px;
+  border-radius: 50px;
+  font-weight: 600;
+  color: #4a4169;
+}
+.left-box h1 span {
+  /* color: #7370F2; */
+}
+.left-box p {
+  font-weight: lighter;
+  color: #625882;
+}
+/* End landing */
