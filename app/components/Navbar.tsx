@@ -24,7 +24,7 @@ export default function Navbar() {
   const supabase = createClient();
   const handleLogout = async () => {
     await supabase.auth.signOut();
-    window.location.href = 'http://localhost:3000/logIn';
+    window.location.href = 'https://skill-swap-eight-sand.vercel.app/';
   };
 
   return loggedIn ? (
