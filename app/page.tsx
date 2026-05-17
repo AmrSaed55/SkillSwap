@@ -36,7 +36,7 @@
 //   );
 // }
 
-import { supabase } from '@/lib/supabase';
+// import { supabase } from '@/lib/supabase';
 import Landing from './landing/page';
 
 export default function Home() {
