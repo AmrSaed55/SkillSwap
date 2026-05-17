@@ -1,33 +1,88 @@
-'use client';
-import Navbar from '../components/Navbar';
-import Footer from '../components/Footer';
+// 'use client';
+import Link from 'next/link';
 import Sidebar from '../components/Sidebar';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   faBookOpenReader,
   faGraduationCap,
 } from '@fortawesome/free-solid-svg-icons';
-import Link from 'next/link';
 import CommentsCard from '../components/cards/CommentsCard';
-export default function Skills() {
+import { createClient } from '@/utils/supabase/server';
+// import { createClient } from '@/utils/supabase/server';
+export default async function Skills() {
+  // const supabase = await createClient();
+
+  // // current user
+  // const {
+  //   data: { user },
+  // } = await supabase.auth.getUser();
+
+  // if (!user) {
+  //   return <p>Not logged in</p>;
+  // }
+
+  // // profile data
+  // const { data: profile } = await supabase
+  //   .from('profiles')
+  //   .select('*')
+  //   .eq('id', user.id)
+  //   .single();
+  const supabase = await createClient();
+
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
+
+  if (!user) {
+    return <p>Not logged in</p>;
+  }
+
+  const { data: profile } = await supabase
+    .from('profiles')
+    .select('*')
+    .eq('id', user.id)
+    .single();
+
+  // List of skills and learning skills
+  const listSkills = profile?.skills.map((skill: string, index: number) => (
+    <span
+      key={index}
+      className="font-semibold primary-text bg-[#f5eeff] p-3 rounded-full hover:bg-[#f0e6ff] cursor-default"
+    >
+      {skill}{' '}
+      <span className="text-[12px] primary-text ml-2 px-2 py-1 lim-bg rounded-full uppercase">
+        expert
+      </span>
+    </span>
+  ));
+
+  const listLearningSkills = profile?.learning_skills.map(
+    (skill: string, index: number) => (
+      <span
+        key={index}
+        className="font-semibold primary-text bg-[#f5eeff] p-3 rounded-full hover:bg-[#f0e6ff] cursor-default"
+      >
+        {skill}{' '}
+        <span className="text-[12px] primary-text ml-2 px-2 py-1 lim-bg rounded-full uppercase">
+          beginner
+        </span>
+      </span>
+    ),
+  );
+  //================================
   return (
     <main id="skills">
-      {/* start Header & Navbar */}
-      <header className="sticky top-0 z-50">
-        <Navbar />
-      </header>
-      {/* end Header & Navbar */}
       <div className="grid grid-cols-12">
         {/* start sidebar */}
         <Sidebar
-          img={''}
-          name={''}
-          title={''}
-          rating={0}
-          reviews={0}
-          numOfSwaps={0}
-          numOfSkills={0}
-          bio={''}
+          img={profile?.avatar_url}
+          name={profile?.username}
+          title={profile?.job_title}
+          rating={profile?.rate}
+          reviews={profile?.reviews}
+          numOfSwaps={profile?.learning_skills.length * 3}
+          numOfSkills={profile?.skills.length}
+          bio={profile?.bio}
         />
         {/* end sidebar */}
 
@@ -51,8 +106,8 @@ export default function Skills() {
                   <FontAwesomeIcon icon={faGraduationCap} /> I am Teaching
                 </span>
                 <div className="flex items-center flex-wrap gap-4">
-                  <span className="font-semibold primary-text bg-[#f5eeff] p-3 rounded-full hover:bg-[#f0e6ff] cursor-default">
-                    User Experience Design{' '}
+                  {listSkills}
+                  {/* <span className="font-semibold primary-text bg-[#f5eeff] p-3 rounded-full hover:bg-[#f0e6ff] cursor-default">
                     <span className="text-[12px] primary-text ml-2 px-2 py-1 lim-bg rounded-full uppercase">
                       Expert
                     </span>
@@ -74,7 +129,7 @@ export default function Skills() {
                     <span className="text-[12px] primary-text ml-2 px-2 py-1 lim-bg rounded-full uppercase">
                       Expert
                     </span>
-                  </span>
+                  </span> */}
                 </div>
               </div>
               <div>
@@ -82,7 +137,8 @@ export default function Skills() {
                   <FontAwesomeIcon icon={faBookOpenReader} /> I am Learning
                 </span>
                 <div className="flex items-center flex-wrap gap-4">
-                  <span className="font-semibold primary-text bg-[#f5eeff] p-3 rounded-full hover:bg-[#f0e6ff] cursor-default">
+                  {listLearningSkills}
+                  {/* <span className="font-semibold primary-text bg-[#f5eeff] p-3 rounded-full hover:bg-[#f0e6ff] cursor-default">
                     3D Modeling (Blender){' '}
                     <span className="text-[12px] primary-text ml-2 px-2 py-1 purple-bg rounded-full uppercase">
                       beginner
@@ -99,7 +155,7 @@ export default function Skills() {
                     <span className="text-[12px] primary-text ml-2 px-2 py-1 purple-bg rounded-full uppercase">
                       Intermediate
                     </span>
-                  </span>
+                  </span> */}
                 </div>
               </div>
             </div>
@@ -144,10 +200,6 @@ export default function Skills() {
         </section>
         {/* end User Skills section */}
       </div>
-
-      {/* start Footer */}
-      <Footer />
-      {/* end Footer */}
     </main>
   );
 }

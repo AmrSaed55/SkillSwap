@@ -2,6 +2,9 @@ import type { Metadata } from 'next';
 // import { Geist, Geist_Mono } from 'next/font/google';
 import './globals.css';
 import { Plus_Jakarta_Sans } from 'next/font/google'; // {Plus_Jakarta_Sans}
+import Navbar from './components/Navbar';
+import Footer from './components/Footer';
+import { AuthProvider } from './contexts/AuthContext';
 // const geistSans = Geist({
 //   variable: '--font-geist-sans',
 //   subsets: ['latin'],
@@ -31,7 +34,21 @@ export default function RootLayout({
       lang="en"
       className={`${PlusJakartaSans.className} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col">{children}</body>
+      <body className="min-h-full flex flex-col">
+        <AuthProvider>
+          {/* start Header & Navbar */}
+          <header className="sticky top-0 z-50">
+            <Navbar />
+          </header>
+          {/* end Header & Navbar */}
+
+          {children}
+
+          {/* start Footer */}
+          <Footer />
+          {/* end Footer */}
+        </AuthProvider>
+      </body>
     </html>
   );
 }

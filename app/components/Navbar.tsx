@@ -9,6 +9,9 @@ import {
   faBars,
 } from '@fortawesome/free-solid-svg-icons';
 import { useState } from 'react';
+import { createClient } from '@/utils/supabase/client';
+import { useAuth } from '../contexts/AuthContext';
+
 export default function Navbar() {
   const [isProfileMenuOpen, setIsProfileMenuOpen] = useState(false);
   const pathname = usePathname();
@@ -16,7 +19,16 @@ export default function Navbar() {
     setIsProfileMenuOpen(!isProfileMenuOpen);
   };
 
-  return (
+  // const [loggedInState, setLoggedInState] = useState(false);
+  const { loggedIn, user, profile } = useAuth();
+  const supabase = createClient();
+  const handleLogout = async () => {
+    await supabase.auth.signOut();
+    window.location.href = 'http://localhost:3000/logIn';
+  };
+
+  return loggedIn ? (
+    // LOGGED IN
     <nav className="bg-primary-color">
       <div className="container m-auto flex items-center justify-between h-20 w-full px-6 lg:p-0">
         <h1 className="text-2xl lg:text-3xl capitalize gradient-color font-extrabold cursor-pointer">
@@ -80,7 +92,7 @@ export default function Navbar() {
                 <li className="border-t border-gray-300 mt-2" />
                 <li className="flex items-center gap-3 cursor-pointer hover:bg-indigo-200 px-1.5 my-2 rounded-md">
                   <Image
-                    src={'/profile.png'}
+                    src={profile?.avatar_url || '/profile.png'}
                     alt="user pic"
                     width={30}
                     height={30}
@@ -88,9 +100,11 @@ export default function Navbar() {
                   />
                   <div className="flex items-center justify-between w-full">
                     <div className="flex flex-col text-sm mt-2">
-                      <h5 className="capitalize font-bold">amr saed</h5>
+                      <h5 className="capitalize font-bold">
+                        {profile?.username || 'username'}
+                      </h5>
                       <p className="text-gray-500 font-light">
-                        amr55@gmail.com
+                        {profile?.email || 'amr55@gmail.com'}
                       </p>
                     </div>
                     <div className="flex items-center justify-center gap-5">
@@ -116,7 +130,7 @@ export default function Navbar() {
                     settings
                   </li>
                 </Link>
-                <Link href={'/sign-out'}>
+                <Link href={'/logIn'} onClick={handleLogout}>
                   <li
                     className={`capitalize cursor-pointer hover:bg-indigo-200 p-2 rounded-md ${pathname === '/sign-out' ? 'font-extrabold bg-indigo-100' : ''}`}
                   >
@@ -139,7 +153,7 @@ export default function Navbar() {
             </li>
             <li className="rounded-full cursor-pointer border-2 border-solid border-indigo-300 hover:border-indigo-400 transition-colors">
               <Image
-                src={'/profile.png'}
+                src={profile?.avatar_url || '/profile.png'}
                 alt="user pic"
                 width={35}
                 height={40}
@@ -149,18 +163,103 @@ export default function Navbar() {
             </li>
             {isProfileMenuOpen ? (
               <ul className=' ${isProfileMenuOpen ? "block" : "hidden"} capitalize gap-5 lg:gap-10 text-lg absolute top-15 right-0  bg-white border-2 border-indigo-200 rounded-md shadow-lg w-40 z-10'>
-                <li className="cursor-pointer mb-1.5 hover:bg-indigo-200 p-3 ">
-                  your profile
-                </li>
-                <li className="cursor-pointer mb-1.5 hover:bg-indigo-200 p-3 ">
-                  settings
-                </li>
-                <li className="cursor-pointer hover:bg-indigo-200 p-3 ">
-                  sign out
-                </li>
+                <Link href={'/profile'}>
+                  <li className="cursor-pointer mb-1.5 hover:bg-indigo-200 p-3 ">
+                    your profile
+                  </li>
+                </Link>
+                {/* <Link href={'/settings'}>
+                  <li className="cursor-pointer mb-1.5 hover:bg-indigo-200 p-3 ">
+                    settings
+                  </li>
+                </Link> */}
+                <Link href={'/logIn'} onClick={handleLogout}>
+                  <li className="cursor-pointer hover:bg-indigo-200 p-3 ">
+                    sign out
+                  </li>
+                </Link>
               </ul>
             ) : null}
           </ul>
+        </div>
+      </div>
+    </nav>
+  ) : (
+    // LOGGED OUT
+    <nav className="bg-primary-color">
+      <div className="container m-auto flex items-center justify-between h-20 w-full px-6 lg:p-0">
+        <h1 className="text-2xl lg:text-3xl capitalize gradient-color font-extrabold cursor-pointer">
+          SkillSwap
+        </h1>
+        <div>
+          <div className="mid-list hidden md:block ">
+            <ul className="flex items-center justify-between gap-5 lg:gap-10 font-medium">
+              <li
+                className={`nav-item cursor-pointer ${pathname === '/' ? 'active' : ''}`}
+              >
+                <Link href={'/'}>Home</Link>
+              </li>
+              <li
+                className={`nav-item cursor-pointer ${pathname === '/skills' ? 'active' : ''}`}
+              >
+                <Link href={'/skills'}>Skills</Link>
+              </li>
+              <li
+                className={`nav-item cursor-pointer ${pathname === '/logIn' ? 'active' : ''}`}
+              >
+                <Link href={'/logIn'}>Log In</Link>
+              </li>
+              <li
+                className={`nav-item cursor-pointer ${pathname === '/signUp' ? 'active' : ''}`}
+              >
+                <Link href={'/signUp'}>Sign Up</Link>
+              </li>
+            </ul>
+          </div>
+          <div className="right-icon">
+            <div className="md:hidden">
+              <FontAwesomeIcon
+                icon={faBars}
+                className="text-indigo-950 text-xl active:text-indigo-500"
+                onClick={handleShowProfileMenuClick}
+              />
+              {isProfileMenuOpen ? (
+                <ul className=' ${isProfileMenuOpen ? "block" : "hidden"}  gap-5 lg:gap-10  absolute top-20 right-4 bg-white border border-gray-300 rounded-md shadow-lg w-85 p-1 z-10'>
+                  <Link href={'/'}>
+                    <li
+                      className={`capitalize cursor-pointer  hover:bg-indigo-200 p-2 rounded-md ${pathname === '/' ? 'font-extrabold bg-indigo-100' : ''}`}
+                    >
+                      home
+                    </li>
+                  </Link>
+                  <Link href={'/skills'}>
+                    <li
+                      className={`capitalize cursor-pointer hover:bg-indigo-200 p-2 rounded-md ${pathname === '/skills' ? 'font-extrabold bg-indigo-100' : ''}`}
+                    >
+                      skills
+                    </li>
+                  </Link>
+
+                  <li className="border-t border-gray-300 mt-2" />
+
+                  <Link href={'/logIn'}>
+                    <li
+                      className={`capitalize cursor-pointer hover:bg-indigo-200 p-2 rounded-md ${pathname === '/logIn' ? 'font-extrabold bg-indigo-100' : ''}`}
+                    >
+                      Log In
+                    </li>
+                  </Link>
+                  <Link href={'/signUp'}>
+                    <li
+                      className={`capitalize cursor-pointer hover:bg-indigo-200 p-2 rounded-md ${pathname === '/signUp' ? 'font-extrabold bg-indigo-100' : ''}`}
+                    >
+                      sign Up
+                    </li>
+                  </Link>
+                </ul>
+              ) : null}
+            </div>
+          </div>
         </div>
       </div>
     </nav>

@@ -7,12 +7,6 @@ import MatchesCard from '../components/cards/MatchesCard';
 export default function Skills() {
   return (
     <main id="skills">
-      {/* start Header & Navbar */}
-      <header className="sticky top-0 z-50">
-        <Navbar />
-      </header>
-      {/* end Header & Navbar */}
-
       {/* start Matches Header section */}
       <section id="matchesHeader" className="pt-20 px-6">
         <div className="container m-auto flex flex-wrap items-center justify-between">
@@ -221,10 +215,6 @@ export default function Skills() {
         </div>
       </section>
       {/* end Matches section */}
-
-      {/* start Footer */}
-      <Footer />
-      {/* end Footer */}
     </main>
   );
 }

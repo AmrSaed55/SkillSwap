@@ -12,21 +12,15 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 import { faSistrix } from '@fortawesome/free-brands-svg-icons';
 import Link from 'next/link';
-import Navbar from '../components/Navbar';
 // import RatingSystem from '../components/RatingSystem';
 import PrimaryButton from '../components/buttons/primaryButton';
 import Footer from '../components/Footer';
 import SkillCard from '../components/cards/SkilllCard';
 import SecondaryButton from '../components/buttons/secondaryButton';
+
 export default function Skills() {
   return (
     <main id="skills">
-      {/* start Header & Navbar */}
-      <header className="sticky top-0 z-50">
-        <Navbar />
-      </header>
-      {/* end Header & Navbar */}
-
       {/* start skillsHeader section */}
       <section id="skillsHeader" className="py-20 px-6">
         <div className="container m-auto">
@@ -290,15 +284,11 @@ export default function Skills() {
             />
           </div>
           <div className="text-center mt-12">
-            <SecondaryButton text="Explore Skills"/>
+            <SecondaryButton text="Explore Skills" />
           </div>
         </div>
       </section>
       {/* end All Skills section */}
-
-      {/* start Footer */}
-      <Footer />
-      {/* end Footer */}
     </main>
   );
 }

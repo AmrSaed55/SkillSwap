@@ -11,11 +11,6 @@ import Footer from '../components/Footer';
 export default function Landing() {
   return (
     <main id="landing">
-      {/* start Header & Navbar */}
-      <header className="sticky top-0 z-50">
-        <Navbar />
-      </header>
-      {/* end Header & Navbar */}
       {/* start landingHeader section */}
       <section id="landingHeader" className="py-20 md:py-30 px-6">
         <div className="container m-auto">
@@ -315,9 +310,6 @@ export default function Landing() {
         </div>
       </section>
       {/* end Get Early Access section */}
-      {/* start Footer */}
-      <Footer />
-      {/* end Footer */}
     </main>
   );
 }

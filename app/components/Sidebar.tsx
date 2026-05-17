@@ -1,7 +1,10 @@
+// 'use client';
 import Image from 'next/image';
 import PrimaryButton from './buttons/primaryButton';
 import SecondaryButton from './buttons/secondaryButton';
-
+// import { createClient } from '@/utils/supabase/server';
+// import { useEffect, useState } from 'react';
+import UploadAvatar from '../components/UploadAvatar';
 type SidebarProps = {
   img: string;
   name: string;
@@ -12,7 +15,7 @@ type SidebarProps = {
   numOfSkills: number;
   bio: string;
 };
-export default function Sidebar({
+export default async function Sidebar({
   img,
   name,
   title,
@@ -22,36 +25,56 @@ export default function Sidebar({
   numOfSkills,
   bio,
 }: SidebarProps) {
+  // const supabase = await createClient();
+
+  // const {
+  //   data: { user },
+  // } = await supabase.auth.getUser();
+
+  // if (!user) {
+  //   return <p>Not logged in</p>;
+  // }
+
+  // const { data: profile } = await supabase
+  //   .from('profiles')
+  //   .select('*')
+  //   .eq('id', user.id)
+  //   .single();
+
   return (
     <aside className="col-start-1 col-span-12 lg:col-start-2 lg:col-span-3 h-fit mt-10 p-6 flex flex-col items-start justify-start gap-8">
       <div className="container m-auto flex flex-col items-start justify-start gap-8 bg-white shadow-lg rounded-2xl p-8">
-        <div className="user-info flex items-center justify-center gap-7 ">
-          <Image
-            src={img || '/user2.png'}
-            alt="user"
-            width={120}
-            height={100}
-            className="rounded-2xl"
-          ></Image>
-          <div className="flex flex-col justify-center">
-            <h4 className="capitalize text-2xl font-extrabold primary-text">
-              {name || 'Julian Vance'}
-            </h4>
-            <p className="capitalize paragraph-color font-medium text-sm pt-1">
-              {title || 'Digital Product Strategist'}
-            </p>
-            <span className="text-sm w-fit primary-text  purple-bg px-2 py-1 rounded-full mt-5">
-              <span className="text-[16px] text-[#FFC107]">&#9733;</span>
-              <span className="text-[14px] font-bold px-1">
-                {rating || 4.9}
+        <div className='relative'>
+          <div className="user-info flex items-center justify-center gap-7 ">
+            <Image
+              src={img || '/mentor1.png'}
+              alt="user"
+              width={120}
+              height={100}
+              className="rounded-2xl w-[120px] h-[120px] object-cover"
+            ></Image>
+
+            <div className="flex flex-col justify-center">
+              <h4 className="capitalize text-2xl font-extrabold primary-text">
+                {name || 'Julian Vance'}
+              </h4>
+              <p className="capitalize paragraph-color font-medium text-sm pt-1">
+                {title || 'Digital Product Strategist'}
+              </p>
+              <span className="text-sm w-fit primary-text  purple-bg px-2 py-1 rounded-full mt-5">
+                <span className="text-[16px] text-[#FFC107]">&#9733;</span>
+                <span className="text-[14px] font-bold px-1">
+                  {rating || 4.9}
+                </span>
+                ({reviews || 128} Reviews)
               </span>
-              ({reviews || 128} Reviews)
-            </span>
+            </div>
           </div>
+          <UploadAvatar />
         </div>
         <p className="paragraph-color font-medium wrap-break-word">
           {bio ||
-            ' Passionate about bridging the gap between design and development. I’ve spent 10 years building scalable systems and love teaching complex concepts through simple metaphors.'}
+            'Passionate about bridging the gap between design and development. I’ve spent 10 years building scalable systems and love teaching complex concepts through simple metaphors.'}
         </p>
         <div className="flex flex-col w-full">
           <PrimaryButton
